@@ -1,0 +1,90 @@
+<html>
+<head>
+    <title>View Opinion</title>
+    <style>
+        /* CSS styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #E6E6FA;
+        }
+        
+        h1 {
+            color: #ac12e3;
+            text-align: center;
+        }
+        
+        button {
+            padding: 5px 10px;
+            background-color: #ac12e0;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .goback-button {
+            display: block;
+            margin: 0 auto; /* Center-align the button */
+        }
+        
+        p {
+            margin-top: 20px;
+        }
+        
+        ul {
+            padding-left: 20px;
+        }
+        
+        input[type="text"] {
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        
+        button[type="submit"] {
+            margin-top: 10px;
+        }
+        
+        /* Responsive styles */
+        @media only screen and (max-width: 600px) {
+            /* Adjust styles for smaller screens */
+            body {
+                margin: 10px;
+            }
+            
+            h1 {
+                font-size: 20px;
+            }
+            
+            button {
+                padding: 3px 8px;
+            }
+            
+            input[type="text"] {
+                padding: 3px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <h1>View Opinion</h1>
+    <button class="goback-button" onclick="goBack()">Go Back</button>
+
+    <p>{{ opinion.opinion }}</p>
+    <ul>
+        {% for comment in opinion.comments %}
+            <li>{{ comment }}</li>
+        {% endfor %}
+       
+    </ul>
+   
+   
+
+    <script>
+        function goBack() {
+            location.replace(document.referrer);
+        }
+    </script>
+</body>
+</html>

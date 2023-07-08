@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Community Service</title>
+    <style>
+        /* CSS styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #E6E6FA;
+        }
+        
+        input[type="text"] {
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        } 
+
+        .comment {
+            color: #800080;
+        }
+        
+        .replied-text {
+            margin-top: 40px; /* Add margin-top for spacing */
+        }
+        
+        li {
+            margin-bottom: 40px; /* Add margin-bottom for spacing */
+            color: #ac12e3;
+        }
+        
+        h1 {
+            color: #ac12e3;
+        }
+        
+        button {
+            padding: 5px 10px;
+            background-color: #ac12e0;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        button.fixed {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 9999;
+        }
+        
+        button2 {
+            padding: 5px 10px;
+            background-color: #D8D8FA;
+            color: #333;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <hr>
+    <h1>Community Service</h1>
+    <ul>
+        {% for opinion in opinions %}
+            <li>
+                {{ opinion.opinion }}
+                {% if opinion.comments %}
+                    <ul class="replied-text">
+                        {% for comment in opinion.comments %}
+                            <li class="comment">{{ comment }}</li>
+                        {% endfor %}
+                    </ul>
+                {% endif %}
+                <form action="/opinion/{{ loop.index0 }}" method="POST">
+                    <input type="text" name="comment" placeholder="Add reply">
+                    <button>Reply</button>
+                </form>
+            </li>
+        {% endfor %}
+    </ul>
+    <hr>
+    <form action="/add_opinion" method="GET">
+        <button type="submit" class="fixed">Comment</button>
+    </form>
+</body>
+</html>
